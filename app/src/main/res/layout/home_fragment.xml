@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="model"
+            type="com.example.weatherforecast.model.InfoWeatherModel" />
+
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/myWhite"
+        app:layoutDescription="@xml/home_fragment_xml_constraintlayout_scene2">
+
+        <ImageView
+            android:id="@+id/imageTopic"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            setSRC="@{model.weather.get(0).idWeather}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/viewSpaceHomeFragment"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_100mdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/bg_rounded_view_home_fragment"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--icon menu-->
+        <ImageView
+            android:id="@+id/vectorMenu"
+            android:layout_width="@dimen/_25mdp"
+            android:layout_height="@dimen/_25mdp"
+            android:layout_margin="@dimen/_16mdp"
+            android:src="@drawable/ic_menu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
+        <!-- icom add -->
+        <ImageView
+            android:id="@+id/vectorAdd"
+            android:layout_width="@dimen/_25mdp"
+            android:layout_height="@dimen/_25mdp"
+            android:layout_margin="@dimen/_16mdp"
+            android:src="@drawable/ic_add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <!-- main card-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardMainHomeFragment"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_200mdp"
+                    android:layout_margin="@dimen/_10mdp"
+                    app:cardCornerRadius="@dimen/_10mdp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_5mdp"
+                        android:padding="@dimen/_10mdp">
+
+                        <!-- tv name-->
+                        <TextView
+                            android:id="@+id/tvNameHomeFragment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_extralightitalic"
+                            android:text="@{model.nameCity}"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_20font_mdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <!-- tv date-->
+                        <TextView
+                            android:id="@+id/tvDateHomeFragment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_extralightitalic"
+                            setDt="@{model.date}"
+                            setTimeZone="@{model.timezone}"
+                            android:textSize="@dimen/_11font_mdp"
+                            app:layout_constraintStart_toStartOf="@id/tvNameHomeFragment"
+                            app:layout_constraintTop_toBottomOf="@id/tvNameHomeFragment" />
+                        <!-- icon weather-->
+                        <ImageView
+                            android:id="@+id/iconWeatherHomeFragment"
+                            android:layout_width="@dimen/_36mdp"
+                            android:layout_height="@dimen/_36mdp"
+                            android:layout_marginTop="@dimen/_5mdp"
+                            setIcon="@{model.weather.get(0).idWeather}"
+                            app:layout_constraintStart_toStartOf="@id/tvNameHomeFragment"
+                            app:layout_constraintTop_toBottomOf="@id/tvDateHomeFragment" />
+                        <!-- tv degree -->
+                        <TextView
+                            android:id="@+id/tvDegreeCardMainHomeFragment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_8mdp"
+                            android:fontFamily="@font/barlow_extralightitalic"
+                            android:text='@{String.valueOf(model.main.temp) + " "}'
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_30font_mdp"
+                            app:layout_constraintBottom_toBottomOf="@id/iconWeatherHomeFragment"
+                            app:layout_constraintStart_toEndOf="@id/iconWeatherHomeFragment"
+                            app:layout_constraintTop_toTopOf="@id/iconWeatherHomeFragment" />
+                        <!-- tv unit degree-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_extralightitalic"
+                            android:text="&#176; "
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_15font_mdp"
+                            app:layout_constraintStart_toEndOf="@id/tvDegreeCardMainHomeFragment"
+                            app:layout_constraintTop_toTopOf="@id/tvDegreeCardMainHomeFragment" />
+
+                        <!-- tv detail-->
+                        <TextView
+                            android:id="@+id/tvDetailWeatherHomeFragment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_extralightitalic"
+                            android:text="@{model.weather.get(0).description}"
+                            android:textSize="@dimen/_11font_mdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/iconWeatherHomeFragment" />
+                        <!-- tv degree max -->
+                        <TextView
+                            android:id="@+id/tvDetailDegreeMaxCardMainHomeFragment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_extralightitalic"
+                            android:text='@{String.valueOf(model.main.tempMax) + " "}'
+                            android:textSize="@dimen/_11font_mdp"
+                            app:layout_constraintEnd_toStartOf="@id/tvDetailDegreeMaxUnitCardMainHomeFragment"
+                            app:layout_constraintTop_toBottomOf="@id/tvDetailWeatherHomeFragment" />
+
+                        <TextView
+                            android:id="@+id/tvDetailDegreeMaxUnitCardMainHomeFragment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_extralightitalic"
+                            android:text="&#176; "
+                            android:textSize="@dimen/_10font_mdp"
+                            app:layout_constraintStart_toEndOf="@id/tvDetailDegreeMaxCardMainHomeFragment"
+                            app:layout_constraintTop_toTopOf="@id/tvDetailDegreeMaxCardMainHomeFragment" />
+                        <!-- tv degree min-->
+                        <TextView
+                            android:id="@+id/tvDetailDegreeMinCardMainHomeFragment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_extralightitalic"
+                            android:text='@{" / "+ String.valueOf(model.main.tempMin) + " "}'
+                            android:textSize="@dimen/_11font_mdp"
+                            app:layout_constraintBottom_toBottomOf="@id/tvDetailDegreeMaxCardMainHomeFragment"
+                            app:layout_constraintStart_toEndOf="@id/tvDetailDegreeMaxUnitCardMainHomeFragment"
+                            app:layout_constraintTop_toTopOf="@id/tvDetailDegreeMaxCardMainHomeFragment" />
+
+                        <TextView
+                            android:id="@+id/tvDetailDegreeMinUnitCardMainHomeFragment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_extralightitalic"
+                            android:text="&#176; "
+                            android:textSize="@dimen/_10font_mdp"
+                            app:layout_constraintEnd_toEndOf="@id/tvDetailWeatherHomeFragment"
+                            app:layout_constraintStart_toEndOf="@id/tvDetailDegreeMinCardMainHomeFragment"
+                            app:layout_constraintTop_toTopOf="@id/tvDetailDegreeMinCardMainHomeFragment" />
+                        <!--tv feels like-->
+                        <TextView
+                            android:id="@+id/tvDetailFeelsDegreeMainCardHomeFragment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_extralightitalic"
+                            android:text='@{"Feels like " + String.valueOf(model.main.feelsLike) + " "}'
+                            android:textSize="@dimen/_11font_mdp"
+                            app:layout_constraintEnd_toStartOf="@id/tvDetailFeelsDegreeUnitMainCardHomeFragment"
+                            app:layout_constraintTop_toBottomOf="@id/tvDetailDegreeMaxCardMainHomeFragment" />
+
+                        <TextView
+                            android:id="@+id/tvDetailFeelsDegreeUnitMainCardHomeFragment"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_extralightitalic"
+                            android:text="&#176; "
+                            android:textSize="@dimen/_10font_mdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/tvDetailFeelsDegreeMainCardHomeFragment" />
+                        <!-- list of forecast-->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvForecastHourlyCardHomeFragment"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="@dimen/_3mdp"
+                            android:clipToPadding="false"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@id/tvDetailWeatherHomeFragment"
+                            app:layout_constraintStart_toStartOf="@id/iconWeatherHomeFragment"
+                            app:layout_constraintTop_toBottomOf="@id/iconWeatherHomeFragment" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <!-- sub card-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardSubHomeFragment"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_200mdp"
+                    android:layout_margin="@dimen/_10mdp"
+                    app:cardCornerRadius="@dimen/_10mdp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cardMainHomeFragment">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvForecastDailyHomeFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_5mdp"
+                        android:padding="@dimen/_10mdp" />
+                </androidx.cardview.widget.CardView>
+
+                <!-- detail card-->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardDetailHomeFragment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10mdp"
+                    app:cardCornerRadius="@dimen/_10mdp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cardSubHomeFragment">
+
+                    <include layout="@layout/home_fragment_second_card_include"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:layout_margin="@dimen/_10mdp"
+                        app:modelDetail = "@{model}"/>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </ScrollView>
+        <!-- tv detail root-->
+        <TextView
+            android:id="@+id/tvDetailRootHomeFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_80mdp"
+            android:fontFamily="@font/barlow_extralightitalic"
+            android:text="@{model.weather.get(0).main}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_32font_mdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!-- tv degree-->
+        <TextView
+            android:id="@+id/tvDegreeHomeFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/barlow_extralightitalic"
+            android:gravity="center"
+            android:text='@{String.valueOf(model.main.temp) + " "}'
+            android:textColor="@color/black"
+            android:textSize="@dimen/_100font_mdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDetailRootHomeFragment"
+            tools:text="20" />
+        <!-- tv unit degree-->
+        <TextView
+            android:id="@+id/tvUnitDegreeHomeFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/barlow_extralightitalic"
+            android:text="&#176; "
+            android:textColor="@color/black"
+            android:textSize="@dimen/_42font_mdp"
+            app:layout_constraintStart_toEndOf="@id/tvDegreeHomeFragment"
+            app:layout_constraintTop_toTopOf="@id/tvDegreeHomeFragment" />
+        <!-- tv city, country-->
+        <TextView
+            android:id="@+id/tvCityNameHomeFragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/barlow_extralightitalic"
+            android:gravity="center"
+            android:text='@{model.nameCity + "/" + model.sys.countryCode}'
+            android:textColor="@color/black"
+            android:textSize="@dimen/_32font_mdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDegreeHomeFragment" />
+        <!-- tv update-->
+        <TextView
+            android:id="@+id/tvUpdateHomeFragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/barlow_extralightitalic"
+            android:gravity="center"
+            setDt="@{model.date}"
+            setTimeZone="@{model.timezone}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15mdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCityNameHomeFragment" />
+        <!-- rv forecast-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvForeCastHourlyHomeFragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_25mdp"
+            app:layout_constraintBottom_toTopOf="@id/vectorDown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <!-- icon down-->
+        <ImageView
+            android:id="@+id/vectorDown"
+            android:layout_width="@dimen/_28mdp"
+            android:layout_height="@dimen/_28mdp"
+            android:layout_marginBottom="@dimen/_10mdp"
+            android:src="@drawable/ic_arrow_drop_down_circle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="modelDetail"
+            type="com.example.weatherforecast.model.InfoWeatherModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- sunrise-->
+        <ImageView
+            android:id="@+id/igSunrise"
+            android:layout_width="@dimen/_25font_mdp"
+            android:layout_height="@dimen/_25font_mdp"
+            android:layout_margin="@dimen/_16mdp"
+            android:src="@drawable/sunrise"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/myYellow" />
+
+        <TextView
+            android:id="@+id/tvSunrise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_15mdp"
+            android:fontFamily="@font/barlow_extralightitalic"
+            android:text="Sunrise"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11font_mdp"
+            app:layout_constraintBottom_toBottomOf="@id/igSunrise"
+            app:layout_constraintStart_toEndOf="@id/igSunrise"
+            app:layout_constraintTop_toTopOf="@id/igSunrise" />
+
+        <TextView
+            android:id="@+id/tvHourSunrise"
+            tools:text="06:34"
+            setSun="@{modelDetail.sys.sunrise}"
+            setTimeZone="@{modelDetail.timezone}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_16mdp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tvSunrise"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvSunrise" />
+
+        <View
+            android:id="@+id/viewSunrise"
+            android:layout_width="0dp"
+            android:layout_height="0.3dp"
+            android:layout_margin="@dimen/_16mdp"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/tvHourSunrise"
+            app:layout_constraintStart_toStartOf="@id/igSunrise"
+            app:layout_constraintTop_toBottomOf="@id/igSunrise" />
+
+
+        <!-- sunset-->
+        <ImageView
+            android:id="@+id/igSunset"
+            android:layout_width="@dimen/_25font_mdp"
+            android:layout_height="@dimen/_25font_mdp"
+            android:layout_margin="@dimen/_16mdp"
+            android:src="@drawable/sunset"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewSunrise"
+            app:tint="@color/myOrange" />
+
+        <TextView
+            android:id="@+id/tvSunset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_15mdp"
+            android:fontFamily="@font/barlow_extralightitalic"
+            android:text="Sunset"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11font_mdp"
+            app:layout_constraintBottom_toBottomOf="@id/igSunset"
+            app:layout_constraintStart_toEndOf="@id/igSunset"
+            app:layout_constraintTop_toTopOf="@id/igSunset" />
+
+        <TextView
+            android:id="@+id/tvHourSunset"
+            tools:text="18:34"
+            setSun="@{modelDetail.sys.sunset}"
+            setTimeZone="@{modelDetail.timezone}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tvSunset"
+            app:layout_constraintEnd_toEndOf="@id/tvHourSunrise"
+            app:layout_constraintTop_toTopOf="@id/tvSunset" />
+
+        <View
+            android:id="@+id/viewSunset"
+            android:layout_width="0dp"
+            android:layout_height="0.3dp"
+            android:layout_margin="@dimen/_16mdp"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/tvHourSunset"
+            app:layout_constraintStart_toStartOf="@id/igSunset"
+            app:layout_constraintTop_toBottomOf="@id/igSunset" />
+
+        <!-- humidity-->
+        <ImageView
+            android:id="@+id/igHumidity"
+            android:layout_width="@dimen/_20font_mdp"
+            android:layout_height="@dimen/_20font_mdp"
+            android:layout_margin="@dimen/_16mdp"
+            android:src="@drawable/humidity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewSunset"
+            app:tint="@color/myBlue" />
+
+        <TextView
+            android:id="@+id/tvHumidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_15mdp"
+            android:fontFamily="@font/barlow_extralightitalic"
+            android:text="Humidity"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11font_mdp"
+            app:layout_constraintBottom_toBottomOf="@id/igHumidity"
+            app:layout_constraintStart_toEndOf="@id/igHumidity"
+            app:layout_constraintTop_toTopOf="@id/igHumidity" />
+
+        <TextView
+            android:id="@+id/tvHumidityPercent"
+            tools:text="25%"
+            android:text='@{modelDetail.main.humidity + "%"}'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tvHumidity"
+            app:layout_constraintEnd_toEndOf="@id/tvHourSunrise"
+            app:layout_constraintTop_toTopOf="@id/tvHumidity" />
+
+        <View
+            android:id="@+id/viewHumidity"
+            android:layout_width="0dp"
+            android:layout_height="0.3dp"
+            android:layout_margin="@dimen/_16mdp"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/tvHumidityPercent"
+            app:layout_constraintStart_toStartOf="@id/igHumidity"
+            app:layout_constraintTop_toBottomOf="@id/igHumidity" />
+
+        <!-- humidity-->
+        <ImageView
+            android:id="@+id/igWind"
+            android:layout_width="@dimen/_20font_mdp"
+            android:layout_height="@dimen/_20font_mdp"
+            android:layout_margin="@dimen/_16mdp"
+            android:src="@drawable/wind"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewHumidity"
+            app:tint="@color/myDarkGray" />
+
+        <TextView
+            android:id="@+id/tvWind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_15mdp"
+            android:fontFamily="@font/barlow_extralightitalic"
+            android:text="Wind"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11font_mdp"
+            app:layout_constraintBottom_toBottomOf="@id/igWind"
+            app:layout_constraintStart_toEndOf="@id/igWind"
+            app:layout_constraintTop_toTopOf="@id/igWind" />
+
+        <TextView
+            android:id="@+id/tvWindSpeed"
+            tools:text="34 km/h"
+            android:text='@{modelDetail.wind.speed + " km/h"}'
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/tvWind"
+            app:layout_constraintEnd_toEndOf="@id/tvHourSunrise"
+            app:layout_constraintTop_toTopOf="@id/tvWind" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

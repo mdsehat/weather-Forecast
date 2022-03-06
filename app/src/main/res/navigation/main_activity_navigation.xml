@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_activity_navigation"
+    app:startDestination="@id/fragmentHome">
+
+    <fragment
+        android:id="@+id/fragmentHome"
+        android:name="com.example.weatherforecast.view.FragmentHome"
+        android:label="FragmentHome" >
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentAddCity"
+            app:destination="@id/fragmentAddCity" />
+        <action
+            android:id="@+id/action_fragmentHome_to_fragmentMoreSetting"
+            app:destination="@id/fragmentMoreSetting" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAddCity"
+        android:name="com.example.weatherforecast.view.FragmentAddCity"
+        android:label="FragmentAddCity" />
+    <fragment
+        android:id="@+id/fragmentMoreSetting"
+        android:name="com.example.weatherforecast.view.FragmentMoreSetting"
+        android:label="FragmentMoreSetting" />
+</navigation>
