@@ -30,47 +30,58 @@
             android:layout_height="wrap_content"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="@dimen/_80mdp"
-            android:alpha="0" />
+            android:layout_marginTop="0dp"
+            android:alpha="0"
+            android:scaleX="0"
+            android:scaleY="0" />
         <Constraint
             android:id="@+id/tvDegreeHomeFragment"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@id/tvDetailRootHomeFragment"
             motion:layout_constraintStart_toStartOf="parent"
-            android:alpha="0" />
+            android:alpha="0"
+            android:scaleX="0"
+            android:scaleY="0"
+            motion:layout_constraintTop_toBottomOf="@id/tvDetailRootHomeFragment"
+            motion:layout_constraintTop_toTopOf="parent" />
         <Constraint
             android:id="@+id/tvUnitDegreeHomeFragment"
             motion:layout_constraintStart_toEndOf="@id/tvDegreeHomeFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            motion:layout_constraintTop_toTopOf="@id/tvDegreeHomeFragment"
-            android:alpha="0" />
+            motion:layout_constraintTop_toTopOf="parent"
+            android:alpha="0"
+            android:scaleX="0"
+            android:scaleY="0" />
         <Constraint
             android:id="@+id/tvCityNameHomeFragment"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@id/tvDegreeHomeFragment"
             motion:layout_constraintStart_toStartOf="parent"
-            android:alpha="0" />
+            android:alpha="0"
+            motion:layout_constraintTop_toTopOf="parent"
+            android:scaleX="0"
+            android:scaleY="0" />
         <Constraint
             android:id="@+id/tvUpdateHomeFragment"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@id/tvCityNameHomeFragment"
             motion:layout_constraintStart_toStartOf="parent"
-            android:alpha="0" />
+            android:alpha="0"
+            motion:layout_constraintTop_toTopOf="parent"
+            android:scaleX="0"
+            android:scaleY="0" />
         <Constraint
             android:id="@+id/rvForeCastHourlyHomeFragment"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            motion:layout_constraintBottom_toTopOf="@id/vectorDown"
             motion:layout_constraintStart_toStartOf="parent"
-            android:alpha="0" />
+            android:alpha="0"
+            motion:layout_constraintTop_toTopOf="parent" />
         <Constraint
             android:id="@+id/imageTopic"
             motion:layout_constraintEnd_toEndOf="parent"
@@ -91,23 +102,25 @@
             android:layout_width="@dimen/_25mdp"
             android:layout_height="@dimen/_25mdp"
             motion:layout_constraintTop_toTopOf="parent"
-            motion:layout_constraintStart_toStartOf="parent"
-            android:alpha="0" />
+            android:alpha="0"
+            android:scaleX="0"
+            android:scaleY="0" />
         <Constraint
             android:id="@+id/vectorAdd"
-            motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="@dimen/_25mdp"
             android:layout_height="@dimen/_25mdp"
             motion:layout_constraintTop_toTopOf="parent"
-            android:alpha="0" />
+            android:alpha="0"
+            android:scaleX="0"
+            android:scaleY="0" />
         <Constraint
             android:id="@+id/vectorDown"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="@dimen/_28mdp"
             android:layout_height="@dimen/_28mdp"
             motion:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="@dimen/_10mdp"
-            motion:layout_constraintStart_toStartOf="parent" />
+            motion:layout_constraintStart_toStartOf="parent"
+            android:translationY="0dp" />
         <Constraint
             android:id="@+id/vectorDown"
             motion:layout_constraintEnd_toEndOf="parent"

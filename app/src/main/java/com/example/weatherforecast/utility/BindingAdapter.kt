@@ -14,16 +14,35 @@ class BindingAdapter {
         private const val TAG = "BindingAdapterMe"
 
         // binding adapter for image topic for home fragment
-        @BindingAdapter("setSRC")
+        @BindingAdapter(
+            value = ["setSRC", "setDt", "setSunrise", "setSunset", "setTimezone"],
+            requireAll = false
+        )
         @JvmStatic
-        fun setSRC(imageView: ImageView, idWeather: Int) {
-            Log.i(TAG, "setSRC: " + idWeather)
+        fun setSRC(
+            imageView: ImageView,
+            idWeather: Int,
+            dt: Long,
+            sunrise: Long,
+            sunset: Long,
+            timezone: Long
+        ) {
             when (idWeather) {
                 800 -> {
-                    imageView.setImageResource(R.drawable.sunny_photo)
+                    // it's for set night mood or day mood
+                    var time = convertTimeToGMT(dt, timezone)
+                    var timeSunrise = convertTimeToGMT(sunrise, timezone)
+                    var timeSunset = convertTimeToGMT(sunset, timezone)
+                    if ((time > timeSunrise) && (time < timeSunset)) {
+                        // day
+                        imageView.setImageResource(R.drawable.sunny_photo)
+                    } else {
+                        // night
+                        imageView.setImageResource(R.drawable.night_photo_v2)
+                    }
                 }
                 801, 802, 803, 804 -> {
-                    imageView.setImageResource(R.drawable.clouds_photo)
+                    imageView.setImageResource(R.drawable.cloud_photo_v2)
                 }
                 idWeather / 100 -> {
                     when (idWeather / 100) {
@@ -42,13 +61,35 @@ class BindingAdapter {
         }
 
         // binding adapter for icon weather for home fragment
-        @BindingAdapter("setIcon")
+        @BindingAdapter(
+            value = ["setIcon", "setDt", "setSunrise", "setSunset", "setTimezone"],
+            requireAll = false
+        )
         @JvmStatic
-        fun setIcon(imageView: ImageView, idWeather: Int) {
+        fun setIcon(
+            imageView: ImageView,
+            idWeather: Int,
+            dt: Long,
+            sunrise: Long,
+            sunset: Long,
+            timezone: Long
+        ) {
             when (idWeather) {
                 800 -> {
-                    imageView.setImageResource(R.drawable.sunny)
-                    imageView.setColorFilter(R.color.myYellow)
+                    // it's for set night mood or day mood
+                    var time = convertTimeToGMT(dt, timezone)
+                    var timeSunrise = convertTimeToGMT(sunrise, timezone)
+                    var timeSunset = convertTimeToGMT(sunset, timezone)
+                    if ((time > timeSunrise) && (time < timeSunset)) {
+                        // day
+                        imageView.setImageResource(R.drawable.sunny)
+                        imageView.setColorFilter(R.color.myYellow)
+                    } else {
+                        // night
+                        imageView.setImageResource(R.drawable.night)
+                        imageView.setColorFilter(R.color.myYellow)
+                    }
+
                 }
                 801, 802, 803, 804 -> {
                     imageView.setImageResource(R.drawable.cloud)
@@ -81,21 +122,23 @@ class BindingAdapter {
         // binding adapter for time for home fragment
         @BindingAdapter(value = ["setDt", "setTimeZone"], requireAll = true)
         @JvmStatic
-        fun setTime(textView: TextView, dt: Long, timezone: Long){
-            var dateFormat: DateFormat = SimpleDateFormat("HH:mm")
-            dateFormat.timeZone = TimeZone.getTimeZone("GMT")
-            var time = dateFormat.format((dt + timezone) * 1000)
-            textView.text = time
+        fun setTime(textView: TextView, dt: Long, timezone: Long) {
+            textView.text = convertTimeToGMT(dt, timezone) + " "
         }
 
         // binding adapter for sunrise/sunset for home fragment
         @BindingAdapter(value = ["setSun", "setTimeZone"], requireAll = true)
         @JvmStatic
-        fun setSun(textView: TextView, sun: Long, timezone: Long){
+        fun setSun(textView: TextView, sun: Long, timezone: Long) {
+            textView.text = convertTimeToGMT(sun, timezone) + " "
+
+        }
+
+        private fun convertTimeToGMT(time: Long, timezone: Long): String {
             var dateFormat: DateFormat = SimpleDateFormat("HH:mm")
             dateFormat.timeZone = TimeZone.getTimeZone("GMT")
-            var time = dateFormat.format((sun + timezone) * 1000)
-            textView.text = time
+            return dateFormat.format((time + timezone) * 1000)
         }
     }
+
 }

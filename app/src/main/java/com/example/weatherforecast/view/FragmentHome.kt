@@ -23,7 +23,7 @@ class FragmentHome : Fragment() {
         var homeFragmentBinding : HomeFragmentBinding = DataBindingUtil.
         inflate(inflater, R.layout.home_fragment, container, false)
         var viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-        viewModel.getCurrentWeather("tehran", "metric", RetrofitInstance.APP_KEY)
+        viewModel.getCurrentWeather("yazd", "metric", RetrofitInstance.APP_KEY)
             .observe(viewLifecycleOwner, object : Observer<InfoWeatherModel> {
                 override fun onChanged(t: InfoWeatherModel?) {
                     Log.i(TAG, "onChanged: " + t!!.coord!!.lat.toString())
